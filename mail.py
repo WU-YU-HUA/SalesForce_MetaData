@@ -16,11 +16,18 @@ for object_name in object_list:
     # 提取欄位資料
     fields_info = []
     for field in describe['fields']:
+        max_length = field.get('length')
+        precision = field.get('precision')
+        scale = field.get('scale')
+
         fields_info.append({
             'Label': field['label'],
             'API Name': field['name'],
             'Data Type': field['type'],
-            'Is Formula': field['calculated']
+            'Is Formula': field['calculated'],
+            'Max Length': max_length,
+            'Precision': precision,
+            'Scale': scale
         })
 
     # 轉成 DataFrame 顯示（可匯出 Excel）
